@@ -26,11 +26,7 @@ _Problem_: overhead for switching in and out of python for every operation.
 
 Representations of the data dependencies between a number of operations.
 
-![Example of a graph](presentation_material/example_graph1.png | height=200)
-
----
-
-<img src="presentation_material/example_graph1.png" width="48">
+<img src="presentation_material/example_graph1.png" width="200">
 
 ---
 
@@ -104,3 +100,29 @@ result = sess.run(sum_ab, feed_dict={a:[1], b:[2]})
 ```
 
 To obtain the result, you need to feed some data to the graph. In this case, we can feed the numbers "1" and "2" and obtain their sum as a result.  
+
+---
+
+## Linear regression
+
+Now that we know the basics of how to build a graph and run it in a session, we are going to go through a slightly harder example.
+
+Linear regression!
+
+---
+
+## A tf.Variable
+
+```python
+theta0 = tf.Variable(np.random.randn(), name='theta0')
+```
+This line creates a variable in the graph with the name 'theta0'. A variable is a tensor whose shape can be modified by running operations on it. So in this case, the slope and the intercept of the line are variables because we want to modify them until we find the best value possible.
+
+---
+
+## Optimiser
+
+```python
+optimiser = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost_function)
+```
+

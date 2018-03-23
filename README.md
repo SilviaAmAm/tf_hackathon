@@ -4,7 +4,7 @@
 
 ## Before the workshop
 
-The workshop will use python 3 and TensorFlow 1.x. You can find instructions on how to install TensorFlow [here](https://www.tensorflow.org/install/).
+The workshop will use python 3 and TensorFlow 1.6. You can find instructions on how to install TensorFlow [here](https://www.tensorflow.org/install/).
 
 ## Timetable
 
