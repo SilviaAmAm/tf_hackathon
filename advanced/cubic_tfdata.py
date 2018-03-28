@@ -18,7 +18,7 @@ y_col = x_col ** 3
 
 hidden_neurons = 15
 learning_rate = 0.5
-iterations = 500
+iterations = 200
 batch_size = 100
 n_batches = int(len(x)/batch_size)
 
@@ -30,7 +30,7 @@ with tf.name_scope("Data"):
     y_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
 
     dataset = tf.data.Dataset.from_tensor_slices((x_ph, y_ph))
-    dataset = dataset.batch(batch_size).repeat(iterations+1)
+    dataset = dataset.batch(batch_size)
     iterator = tf.data.Iterator.from_structure(dataset.output_types, dataset.output_shapes)
     tf_x, tf_y = iterator.get_next()
 
@@ -67,17 +67,21 @@ with tf.Session() as sess:
     sess.run(iterator_init, feed_dict={x_ph:x_col, y_ph:y_col})
 
     for iter in range(iterations):
-        opt, c = sess.run([optimizer, cost])
-        training_cost.append(c)
-
+        sess.run(iterator_init, feed_dict={x_ph: x_col, y_ph: y_col})
+        for batch in range(n_batches):
+            opt, c = sess.run([optimizer, cost])
+            training_cost.append(c)
 
     # Obtaining predictions for each batch of data
     y_pred = []
+
+    sess.run(iterator_init, feed_dict={x_ph: x_col, y_ph: y_col})
 
     for i in range(n_batches):
         y_pred.append(sess.run(model))
 
     y_pred = np.concatenate(y_pred, axis=0)
+
 
 # -------- ** Plotting the results ** ------------
 
