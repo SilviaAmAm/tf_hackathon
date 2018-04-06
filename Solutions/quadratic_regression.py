@@ -1,5 +1,5 @@
 """
-This script shows how to do linear regression with tensorflow.
+This is the solution to the quadratic regression exercise.
 """
 
 import numpy as np
@@ -7,14 +7,16 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Generating some sample data
-train_X = np.array([3.3,4.4,5.5,6.71,6.93,4.168,9.779,6.182,7.59,2.167,7.042,10.791,5.313,7.997,5.654,9.27,3.1])
-train_Y = np.array([1.7,2.76,2.09,3.19,1.694,1.573,3.366,2.596,2.53,1.221,2.827,3.465,1.65,2.904,2.42,2.94,1.3])
+# Some sample data
+train_X = np.arange(-1, 1, 0.01)
+rand = np.random.uniform(-0.02, 0.02, train_X.shape)
+train_Y = 1.2 * train_X**2 + 0.5*train_X + 1 + rand
+
 num_samples = train_X.shape[0]
 
 # Parameters
 learning_rate = 0.01
-iterations = 2000
+iterations = 10000
 
 ### ------ ** Creating the graph ** -------
 
@@ -22,12 +24,13 @@ iterations = 2000
 X = tf.placeholder(tf.float32, [None])
 Y = tf.placeholder(tf.float32, [None])
 
-# Creating the parameters - theta1 is the slope, theta0 is the intercept (y = theta0 + theta1*x)
-theta0 = tf.Variable(np.random.randn(), name='theta0')
-theta1 = tf.Variable(np.random.randn(), name='theta1')
+# Creating the parameters
+a_tf = tf.Variable(np.random.randn(), name='a')
+b_tf = tf.Variable(np.random.randn(), name='b')
+c_tf = tf.Variable(np.random.randn(), name='c')
 
-# Creating the model: y = theta0 + theta1*x
-model = tf.add(theta0, tf.multiply(theta1, X))
+# Creating the model: y = ax^2 + bx + c
+model = tf.multiply(a_tf, tf.pow(X, 2)) + tf.multiply(b_tf, X) + c_tf
 
 # Creating the cost function
 cost_function = 0.5 * (1.0/num_samples) * tf.reduce_sum(tf.pow(model - Y, 2))
@@ -41,6 +44,7 @@ init = tf.global_variables_initializer()
 
 ### -------- ** Starting the session ** ----------
 
+
 with tf.Session() as sess:
     sess.run(init)
 
@@ -49,19 +53,20 @@ with tf.Session() as sess:
 
         if (i+1)%50 == 0:
             c = sess.run(cost_function, feed_dict={X: train_X, Y: train_Y})
-            print("Step:", '%04d' % (i+1), "cost=", "{:.9f}".format(c), "Theta1=", sess.run(theta1), "Theta0=", sess.run(theta0))
+            print("Step:", '%04d' % (i+1), "cost=", "{:.9f}".format(c))
 
-    slope = sess.run(theta1)
-    intercept = sess.run(theta0)
+    a = sess.run(a_tf)
+    b = sess.run(b_tf)
+    c = sess.run(c_tf)
+
 
 ### -------- ** Plotting the results ** ------------
 
 sns.set()
 fig, ax = plt.subplots()
-ax.scatter(train_X, train_Y)
-plot_x = [np.amin(train_X)-2, np.amax(train_X)+2]
-plot_y = [slope*plot_x[0] + intercept , slope*plot_x[1] + intercept ]
-ax.plot(plot_x, plot_y, color=sns.xkcd_rgb["medium green"])
+ax.scatter(train_X, train_Y, marker=".")
+y_pred = a*(train_X**2) + b*train_X + c     # Change a, b, c to whatever you have called your parameters!
+ax.plot(train_X, y_pred, color=sns.xkcd_rgb["medium green"])
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 
