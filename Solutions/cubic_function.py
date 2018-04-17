@@ -1,6 +1,6 @@
 """
-This script is an example of how to overfit a cubic function using a small feed forward neural network with only one hidden
-layer.
+This is the solution to the cubic function exercise. It shows how to overfit a cubic function with a neural network with
+2 hidden layers.
 """
 
 import numpy as np
@@ -16,7 +16,8 @@ y_col = x_col ** 3
 
 # Network parameters
 
-hidden_neurons = 15
+hidden_neurons_1 = 15
+hidden_neurons_2 = 5
 learning_rate = 0.5
 iterations = 500
 
@@ -28,17 +29,21 @@ with tf.name_scope("Data"):
     y_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
 
 with tf.name_scope("Weights"):
-    weights1 = tf.Variable(tf.random_normal([hidden_neurons, 1]), name="W_in-to-hid")
-    bias1 = tf.Variable(tf.zeros([hidden_neurons]), name="b_in-to-hid")
-    weights2 = tf.Variable(tf.random_normal([1, hidden_neurons]), name="W_hid-to-out")
-    bias2 = tf.Variable(tf.zeros([1]), name="b_hid-to-out")
+    weights1 = tf.Variable(tf.random_normal([hidden_neurons_1, 1]), name="W_in-to-hid1")
+    bias1 = tf.Variable(tf.zeros([hidden_neurons_1]), name="b_in-to-hid1")
+    weights2 = tf.Variable(tf.random_normal([hidden_neurons_2, hidden_neurons_1]), name="W_hid1-to-W_hid2")
+    bias2 = tf.Variable(tf.zeros([hidden_neurons_2]), name="b_hid1-to-b_hid2")
+    weights3 = tf.Variable(tf.random_normal([1, hidden_neurons_2]), name="W_hid2-to-out")
+    bias3 = tf.Variable(tf.zeros([1]), name="b_hid2-to-out")
 
-    parameters = [weights1, bias1, weights2, bias2]
+    parameters = [weights1, bias1, weights2, bias2, weights3, bias3]
 
 with tf.name_scope("Model"):
     z1 = tf.add(tf.matmul(x_ph, tf.transpose(weights1)), bias1)  # output of layer1, size = n_sample x hidden_neurons
     h1 = tf.nn.sigmoid(z1)
-    model = tf.add(tf.matmul(h1, tf.transpose(weights2)), bias2)  # output of last layer, size = n_samples x 1
+    z2 = tf.add(tf.matmul(h1, tf.transpose(weights2)), bias2)
+    h2 = tf.nn.sigmoid(z2)
+    model = tf.add(tf.matmul(h2, tf.transpose(weights3)), bias3)  # output of last layer, size = n_samples x 1
 
 with tf.name_scope("Cost-function"):
     cost = tf.reduce_mean(tf.nn.l2_loss(t=(model - y_ph)))
