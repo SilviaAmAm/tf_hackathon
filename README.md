@@ -6,6 +6,8 @@
 
 The workshop will use python 3 and TensorFlow 1.6. You can find instructions on how to install TensorFlow [here](https://www.tensorflow.org/install/).
 
+The slides for the presentation can be found [here](https://drive.google.com/file/d/1kL97aC9aHtLzFsfluP_Ke6S5DDGerFX_/view?usp=sharing)
+
 ## Timetable
 
 Thursday 26th of April, 10 am:
@@ -25,6 +27,8 @@ Thursday 26th of April, 10 am:
     3. Quadratic function?
 
 * How to build a simple neural network (presentation, N min)
+
+    1. How does a neural network work. A good reference can be found [here](http://ufldl.stanford.edu/tutorial/). 
 
 * Playing with examples 2 (workshop, N min):
 
