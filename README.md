@@ -6,13 +6,13 @@
 
 The workshop will use python 3 and TensorFlow 1.6. You can find instructions on how to install TensorFlow [here](https://www.tensorflow.org/install/).
 
-The slides for the presentation can be found [here](https://drive.google.com/file/d/1kL97aC9aHtLzFsfluP_Ke6S5DDGerFX_/view?usp=sharing)
+The powerpoint and pdf slides for the tutorial part of the Hackathon are in the "Presentation" folder. If you don't have powerpoint, you can see the comment box for the slides in the online powerpointslides version, which can be found [here](https://docs.google.com/presentation/d/1bZUQVG-qvrTJEMgAYk59rG8Ux4b3Bpmmku4Q3GfxJyw/edit?usp=sharing). Note that the equations get messed up in the online powerpoint slides.
 
 ## Timetable
 
-Thursday 26th of April, 10 am:
+Thursday 26th of April, Tutorial (10 - 12 am):
 
-* Introduction to TensorFlow (presentation, N min):
+* Introduction to TensorFlow (presentation, ~15 min):
 
     1. What is the point of TensorFlow
     2. Comparison of Numpy and TensorFlow
@@ -20,18 +20,24 @@ Thursday 26th of April, 10 am:
     4. Running the graph
     5. Basic components of a program in TensorFlow
 
-* Playing with examples 1 (workshop, N min):
+* Playing with examples 1 (workshop, ~20 min):
 
     1. Summing numbers
     2. Linear regression
-    3. Quadratic function?
+    3. Quadratic function
 
-* How to build a simple neural network (presentation, N min)
+* How to build a simple neural network (presentation, ~15 min)
 
     1. How does a neural network work. A good reference can be found [here](http://ufldl.stanford.edu/tutorial/). 
 
-* Playing with examples 2 (workshop, N min):
+* Playing with examples 2 (workshop, ~20 min):
 
     1. Cubic function
-    2. Image classification
+
+* Tensorboard and Dataset API (presentation, ~10 min)
+
+Thursday 26th of April, Projects:
+
+To be decided..
+
 
