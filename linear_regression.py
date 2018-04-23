@@ -22,12 +22,12 @@ iterations = 2000
 X = tf.placeholder(tf.float32, [None])
 Y = tf.placeholder(tf.float32, [None])
 
-# Creating the parameters - theta1 is the slope, theta0 is the intercept (y = theta0 + theta1*x)
-theta0 = tf.Variable(np.random.randn(), name='theta0')
-theta1 = tf.Variable(np.random.randn(), name='theta1')
+# Creating the parameters for y = mx + c
+c = tf.Variable(np.random.randn(), name='c')
+m = tf.Variable(np.random.randn(), name='m')
 
-# Creating the model: y = theta0 + theta1*x
-model = tf.add(theta0, tf.multiply(theta1, X))
+# Creating the model: y = mx + c
+model = tf.add(c, tf.multiply(m, X))
 
 # Creating the cost function
 cost_function = 0.5 * (1.0/num_samples) * tf.reduce_sum(tf.pow(model - Y, 2))
@@ -48,11 +48,11 @@ with tf.Session() as sess:
         sess.run(optimiser, feed_dict={X: train_X, Y: train_Y})
 
         if (i+1)%50 == 0:
-            c = sess.run(cost_function, feed_dict={X: train_X, Y: train_Y})
-            print("Step:", '%04d' % (i+1), "cost=", "{:.9f}".format(c), "Theta1=", sess.run(theta1), "Theta0=", sess.run(theta0))
+            cost = sess.run(cost_function, feed_dict={X: train_X, Y: train_Y})
+            print("Step:", '%04d' % (i+1), "cost=", "{:.9f}".format(cost), "m=", sess.run(m), "c=", sess.run(c))
 
-    slope = sess.run(theta1)
-    intercept = sess.run(theta0)
+    slope = sess.run(m)
+    intercept = sess.run(c)
 
 ### -------- ** Plotting the results ** ------------
 
