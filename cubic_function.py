@@ -23,25 +23,23 @@ iterations = 500
 
 # -------------- ** Building the graph ** ------------------
 
-with tf.name_scope("Data"):
-    x_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
-    y_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
+# Input data
+x_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
+y_ph = tf.placeholder(dtype=tf.float32, shape=[None, 1])
 
-with tf.name_scope("Weights"):
-    weights1 = tf.Variable(tf.random_normal([hidden_neurons, 1]), name="W_in-to-hid")
-    bias1 = tf.Variable(tf.zeros([hidden_neurons]), name="b_in-to-hid")
-    weights2 = tf.Variable(tf.random_normal([1, hidden_neurons]), name="W_hid-to-out")
-    bias2 = tf.Variable(tf.zeros([1]), name="b_hid-to-out")
+# Creating the weights
+weights1 = tf.Variable(tf.random_normal([hidden_neurons, 1]), name="W_in-to-hid")
+bias1 = tf.Variable(tf.zeros([hidden_neurons]), name="b_in-to-hid")
+weights2 = tf.Variable(tf.random_normal([1, hidden_neurons]), name="W_hid-to-out")
+bias2 = tf.Variable(tf.zeros([1]), name="b_hid-to-out")
 
-    parameters = [weights1, bias1, weights2, bias2]
+# Model
+z2 = tf.add(tf.matmul(x_ph, tf.transpose(weights1)), bias1)  # output of layer1, size = n_sample x hidden_neurons
+h2 = tf.nn.sigmoid(z2)
+model = tf.add(tf.matmul(h2, tf.transpose(weights2)), bias2)  # output of last layer, size = n_samples x 1
 
-with tf.name_scope("Model"):
-    z1 = tf.add(tf.matmul(x_ph, tf.transpose(weights1)), bias1)  # output of layer1, size = n_sample x hidden_neurons
-    h1 = tf.nn.sigmoid(z1)
-    model = tf.add(tf.matmul(h1, tf.transpose(weights2)), bias2)  # output of last layer, size = n_samples x 1
-
-with tf.name_scope("Cost-function"):
-    cost = tf.reduce_mean(tf.nn.l2_loss(t=(model - y_ph)))
+# Cost function
+cost = tf.reduce_mean(tf.nn.l2_loss(t=(model - y_ph)))
 
 # Optimisation operation
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)

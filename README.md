@@ -12,7 +12,7 @@ The powerpoint and pdf slides for the tutorial part of the Hackathon are in the 
 
 Thursday 26th of April, Tutorial (10 - 12 am):
 
-* Introduction to TensorFlow (presentation, ~15 min):
+* Introduction to TensorFlow (presentation, ~20 min):
 
     1. What is the point of TensorFlow
     2. Comparison of Numpy and TensorFlow
@@ -34,10 +34,11 @@ Thursday 26th of April, Tutorial (10 - 12 am):
 
     1. Cubic function
 
-* Tensorboard and Dataset API (presentation, ~10 min)
+* Tensorboard and Dataset API (presentation, ~15 min)
 
 Thursday 26th of April, Projects:
 
-To be decided..
+1. Auto-encoder for picture compression
+
 
 
