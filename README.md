@@ -38,7 +38,11 @@ Thursday 26th of April, Tutorial (10 - 12 am):
 
 Thursday 26th of April, Projects:
 
-1. Auto-encoder for picture compression
+1. Auto-encoder for picture compression:
+Introductions to the theory of autoencoders and how to build one can be found [here](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/) and [here](https://blog.keras.io/building-autoencoders-in-keras.html).
 
+2. "Beginner" tensorflow tutorials can be found [here](https://www.tensorflow.org/versions/r1.1/get_started/mnist/beginners).
+ 
+3. Advanced tensorflow tutorials can be found [here](https://www.tensorflow.org/tutorials/). For those of you that are feeling adventurous...
 
 
