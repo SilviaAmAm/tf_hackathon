@@ -36,7 +36,7 @@ Thursday 26th of April, Tutorial (10 - 12 am):
 
 * Tensorboard and Dataset API (presentation, ~15 min)
 
-Thursday 26th of April, Projects:
+Thursday 26th of April, Projects (1-5 pm):
 
 1. Auto-encoder for picture compression:
 Introductions to the theory of autoencoders and how to build one can be found [here](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/) and [here](https://blog.keras.io/building-autoencoders-in-keras.html).
@@ -45,4 +45,6 @@ Introductions to the theory of autoencoders and how to build one can be found [h
  
 3. Advanced tensorflow tutorials can be found [here](https://www.tensorflow.org/tutorials/). For those of you that are feeling adventurous...
 
+Friday 27th of April:
 
+Carry on with the Hackathon projects/tutorials.
