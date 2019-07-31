@@ -9,8 +9,10 @@ with graph.as_default():
     a = tf.placeholder(dtype=tf.int32, shape=[1])
     b = tf.placeholder(dtype=tf.int32, shape=[1])
     sum_ab = tf.add(a, b)
+    init = tf.global_variables_initializer()
 
 with tf.Session(graph=graph) as sess:
+    sess.run(init)
     result = sess.run(sum_ab, feed_dict={a:[1], b:[2]})
 
 print(result)
