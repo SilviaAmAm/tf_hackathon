@@ -6,7 +6,7 @@
 
 The workshop will use python 3 and TensorFlow 1.6. You can find instructions on how to install TensorFlow [here](https://www.tensorflow.org/install/).
 
-The powerpoint and pdf slides for the tutorial part of the Hackathon are in the "Presentation" folder. If you don't have powerpoint, you can see the comment box for the slides in the online powerpointslides version, which can be found [here](https://docs.google.com/presentation/d/1bZUQVG-qvrTJEMgAYk59rG8Ux4b3Bpmmku4Q3GfxJyw/edit?usp=sharing). Note that the equations get messed up in the online powerpoint slides.
+The powerpoint and pdf slides for the tutorial part of the Hackathon are in the [Presentation](./Presentation) folder. 
 
 ## Timetable
 
